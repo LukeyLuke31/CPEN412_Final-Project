@@ -1,0 +1,278 @@
+Restore Archived Project report for MC68K
+Mon Nov 25 13:54:34 2024
+Quartus Prime Version 18.1.0 Build 625 09/12/2018 SJ Standard Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Restore Archived Project Summary
+  3. Restore Archived Project Messages
+  4. Files Restored
+  5. Files Not Restored
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 2018  Intel Corporation. All rights reserved.
+Your use of Intel Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Intel Program License 
+Subscription Agreement, the Intel Quartus Prime License Agreement,
+the Intel FPGA IP License Agreement, or other applicable license
+agreement, including, without limitation, that your use is for
+the sole purpose of programming logic devices manufactured by
+Intel and sold by Intel or its authorized distributors.  Please
+refer to the applicable agreement for further details.
+
+
+
++-------------------------------------------------------------------------+
+; Restore Archived Project Summary                                        ;
++---------------------------------+---------------------------------------+
+; Restore Archived Project Status ; Successful - Mon Nov 25 13:54:34 2024 ;
+; Revision Name                   ; MC68K                                 ;
+; Top-level Entity Name           ; MC68K                                 ;
+; Family                          ; Cyclone V                             ;
++---------------------------------+---------------------------------------+
+
+
++-----------------------------------+
+; Restore Archived Project Messages ;
++-----------------------------------+
+Info: Successfully restored 'C:/ubc/yair-ubc.cpen412/final_project_2024_student_template/MC68K_Full.qar' into the 'C:/ubc/yair-ubc.cpen412/final_project_2024_student_template/' directory
+Info: Generated report 'MC68K.restore.rpt'
+Info (23030): Evaluation of Tcl script j:/intelfpga/18.1/quartus/common/tcl/apps/qpm/qar.tcl was successful
+Info: Quartus Prime Shell was successful. 0 errors, 0 warnings
+    Info: Peak virtual memory: 639 megabytes
+    Info: Processing ended: Mon Nov 25 13:54:34 2024
+    Info: Elapsed time: 00:00:01
+    Info: Total CPU time (on all processors): 00:00:01
+
+
++-------------------------------------------------------------------------------------------------+
+; Files Restored                                                                                  ;
++-------------------------------------------------------------------------------------------------+
+; File Name                                                                                       ;
++-------------------------------------------------------------------------------------------------+
+; qar_info.json                                                                                   ;
+; tsb/ip/rtl/ACIA_6850.vhd                                                                        ;
+; tsb/ip/rtl/ACIA_BaudRate_Generator.bdf                                                          ;
+; tsb/ip/rtl/ACIA_Clock.vhd                                                                       ;
+; tsb/ip/rtl/ACIA_RX.vhd                                                                          ;
+; tsb/ip/rtl/ACIA_TX.vhd                                                                          ;
+; tsb/ip/rtl/AddressDecoder_Verilog.v                                                             ;
+; tsb/ip/rtl/BusRequestLogic.vhd                                                                  ;
+; tsb/ip/rtl/CPU_DMA_Mux.vhd                                                                      ;
+; tsb/ip/rtl/CanBus.bdf                                                                           ;
+; tsb/ip/rtl/ClockGen.cmp                                                                         ;
+; tsb/ip/rtl/ClockGen.qip                                                                         ;
+; tsb/ip/rtl/ClockGen.sip                                                                         ;
+; tsb/ip/rtl/ClockGen.spd                                                                         ;
+; tsb/ip/rtl/ClockGen.vhd                                                                         ;
+; tsb/ip/rtl/ClockGen/ClockGen_0002.qip                                                           ;
+; tsb/ip/rtl/ClockGen/ClockGen_0002.v                                                             ;
+; tsb/ip/rtl/ClockGen_sim/ClockGen.vho                                                            ;
+; tsb/ip/rtl/ColourPallette_2PortRam.vhd                                                          ;
+; tsb/ip/rtl/DMAController.bdf                                                                    ;
+; tsb/ip/rtl/DataMapper68k.vhd                                                                    ;
+; tsb/ip/rtl/Dram.bdf                                                                             ;
+; tsb/ip/rtl/Dtack_Generator_Verilog.v                                                            ;
+; tsb/ip/rtl/GraphicsController_Verilog.v                                                         ;
+; tsb/ip/rtl/GraphicsFrameBufferMemory.bdf                                                        ;
+; tsb/ip/rtl/GraphicsLCD_Controller_verilog.v                                                     ;
+; tsb/ip/rtl/HexTo7SegmentDisplay.vhd                                                             ;
+; tsb/ip/rtl/IIC_SPI_Interface.bdf                                                                ;
+; tsb/ip/rtl/IODecoder.vhd                                                                        ;
+; tsb/ip/rtl/InterruptPriorityEncoder.vhd                                                         ;
+; tsb/ip/rtl/LCD_Controller.vhd                                                                   ;
+; tsb/ip/rtl/Latch3Bit.vhd                                                                        ;
+; tsb/ip/rtl/Latch8Bit.vhd                                                                        ;
+; tsb/ip/rtl/M68000CPU.bdf                                                                        ;
+; tsb/ip/rtl/M68k.sdc                                                                             ;
+; tsb/ip/rtl/M68kDramController_Verilog.v                                                         ;
+; tsb/ip/rtl/M68xxIODecoder.vhd                                                                   ;
+; tsb/ip/rtl/MC68K.qpf                                                                            ;
+; tsb/ip/rtl/MC68K.qsf                                                                            ;
+; tsb/ip/rtl/MC68K.v                                                                              ;
+; tsb/ip/rtl/MC68K_assignment_defaults.qdf                                                        ;
+; tsb/ip/rtl/OnChipIO.bdf                                                                         ;
+; tsb/ip/rtl/OnChipM68xxIO.bdf                                                                    ;
+; tsb/ip/rtl/OnChipROM16KWords.bdf                                                                ;
+; tsb/ip/rtl/OnChipRam256kbyte.bdf                                                                ;
+; tsb/ip/rtl/Programs/DebugMonitorCode/M68kdebugmonitor.mif                                       ;
+; tsb/ip/rtl/Ram32kByte.bsf                                                                       ;
+; tsb/ip/rtl/Ram32kByte.cmp                                                                       ;
+; tsb/ip/rtl/Ram32kByte.qip                                                                       ;
+; tsb/ip/rtl/Ram32kByte.vhd                                                                       ;
+; tsb/ip/rtl/RamAddressMapper_Verilog.v                                                           ;
+; tsb/ip/rtl/SingleBitTriState.bsf                                                                ;
+; tsb/ip/rtl/SingleBitTriState.cmp                                                                ;
+; tsb/ip/rtl/SingleBitTriState.qip                                                                ;
+; tsb/ip/rtl/SingleBitTriState.vhd                                                                ;
+; tsb/ip/rtl/Spf3.spf                                                                             ;
+; tsb/ip/rtl/SramBlockDecoder_Verilog.v                                                           ;
+; tsb/ip/rtl/SramBlock_32KWord.bdf                                                                ;
+; tsb/ip/rtl/TG68.vhd                                                                             ;
+; tsb/ip/rtl/TG68_fast.vhd                                                                        ;
+; tsb/ip/rtl/Timer.vhd                                                                            ;
+; tsb/ip/rtl/TraceExceptionControlBit.vhd                                                         ;
+; tsb/ip/rtl/TraceExceptionGenerator.vhd                                                          ;
+; tsb/ip/rtl/VGADataMux_Verilog.v                                                                 ;
+; tsb/ip/rtl/Video_Controller800x480.bdf                                                          ;
+; tsb/ip/rtl/Waveform68k-V15.0-DE1SoC.vwf                                                         ;
+; tsb/ip/rtl/Waveform68k-V15.0-DE1SoC_Short7us.vwf                                                ;
+; tsb/ip/rtl/async_trap_and_reset.v                                                               ;
+; tsb/ip/rtl/audio_clock.v                                                                        ;
+; tsb/ip/rtl/audio_controller.v                                                                   ;
+; tsb/ip/rtl/audio_converter.v                                                                    ;
+; tsb/ip/rtl/buffer_system.qsys                                                                   ;
+; tsb/ip/rtl/buffer_system.sopcinfo                                                               ;
+; tsb/ip/rtl/buffer_system/buffer_system.cmp                                                      ;
+; tsb/ip/rtl/buffer_system/synthesis/buffer_system.debuginfo                                      ;
+; tsb/ip/rtl/buffer_system/synthesis/buffer_system.qip                                            ;
+; tsb/ip/rtl/buffer_system/synthesis/buffer_system.v                                              ;
+; tsb/ip/rtl/buffer_system/synthesis/submodules/altera_reset_controller.sdc                       ;
+; tsb/ip/rtl/buffer_system/synthesis/submodules/altera_reset_controller.v                         ;
+; tsb/ip/rtl/buffer_system/synthesis/submodules/altera_reset_synchronizer.v                       ;
+; tsb/ip/rtl/buffer_system/synthesis/submodules/buffer_system_onchip_memory2_0.v                  ;
+; tsb/ip/rtl/buffer_system/synthesis/submodules/buffer_system_shadow_buffer.v                     ;
+; tsb/ip/rtl/bufm.hex                                                                             ;
+; tsb/ip/rtl/convert_phonemes_to_jic.cof                                                          ;
+; tsb/ip/rtl/db/debug_timer1_auto_stripped.stp                                                    ;
+; tsb/ip/rtl/debug_timer1.stp                                                                     ;
+; tsb/ip/rtl/demo_test_1_port_rom.bsf                                                             ;
+; tsb/ip/rtl/demo_test_1_port_rom.cmp                                                             ;
+; tsb/ip/rtl/demo_test_1_port_rom.inc                                                             ;
+; tsb/ip/rtl/demo_test_1_port_rom.qip                                                             ;
+; tsb/ip/rtl/demo_test_1_port_rom.v                                                               ;
+; tsb/ip/rtl/demo_test_1_port_rom_bb.v                                                            ;
+; tsb/ip/rtl/demo_test_1_port_rom_inst.v                                                          ;
+; tsb/ip/rtl/flash/flash.debuginfo                                                                ;
+; tsb/ip/rtl/flash/flash.qip                                                                      ;
+; tsb/ip/rtl/flash/flash.v                                                                        ;
+; tsb/ip/rtl/flash/submodules/altera_asmi_parallel.v                                              ;
+; tsb/ip/rtl/flash/submodules/altera_epcq_controller.sv                                           ;
+; tsb/ip/rtl/flash/submodules/altera_epcq_controller_arb.sv                                       ;
+; tsb/ip/rtl/flash/submodules/altera_epcq_controller_core.v                                       ;
+; tsb/ip/rtl/flash/submodules/altera_epcq_controller_wrapper.sv                                   ;
+; tsb/ip/rtl/flash/submodules/altera_reset_controller.sdc                                         ;
+; tsb/ip/rtl/flash/submodules/altera_reset_controller.v                                           ;
+; tsb/ip/rtl/flash/submodules/altera_reset_synchronizer.v                                         ;
+; tsb/ip/rtl/flash/submodules/flash_epcq_controller_0_altera_asmi_parallel_altera_asmi_parallel.v ;
+; tsb/ip/rtl/font_1_port_mem.bsf                                                                  ;
+; tsb/ip/rtl/font_1_port_mem.cmp                                                                  ;
+; tsb/ip/rtl/font_1_port_mem.inc                                                                  ;
+; tsb/ip/rtl/font_1_port_mem.qip                                                                  ;
+; tsb/ip/rtl/font_1_port_mem.v                                                                    ;
+; tsb/ip/rtl/font_1_port_mem_bb.v                                                                 ;
+; tsb/ip/rtl/font_1_port_mem_inst.v                                                               ;
+; tsb/ip/rtl/generate_arbitrary_divided_clk32.v                                                   ;
+; tsb/ip/rtl/global_project_defines.sv                                                            ;
+; tsb/ip/rtl/i2c_av_config.v                                                                      ;
+; tsb/ip/rtl/i2c_controller.v                                                                     ;
+; tsb/ip/rtl/if_vga80x40/hw/ctrm.vhd                                                              ;
+; tsb/ip/rtl/if_vga80x40/hw/lat0-12.hex                                                           ;
+; tsb/ip/rtl/if_vga80x40/hw/losr.vhd                                                              ;
+; tsb/ip/rtl/if_vga80x40/vga80x40_col1fixed.vhd                                                   ;
+; tsb/ip/rtl/lpm_bustri0.bsf                                                                      ;
+; tsb/ip/rtl/lpm_bustri0.cmp                                                                      ;
+; tsb/ip/rtl/lpm_bustri0.qip                                                                      ;
+; tsb/ip/rtl/lpm_bustri0.vhd                                                                      ;
+; tsb/ip/rtl/lpm_bustri2.bsf                                                                      ;
+; tsb/ip/rtl/lpm_bustri2.cmp                                                                      ;
+; tsb/ip/rtl/lpm_bustri2.qip                                                                      ;
+; tsb/ip/rtl/lpm_bustri2.vhd                                                                      ;
+; tsb/ip/rtl/ltc2308_debug.qsys                                                                   ;
+; tsb/ip/rtl/ltc2308_debug.sopcinfo                                                               ;
+; tsb/ip/rtl/ltc2308_debug/ltc2308_debug.cmp                                                      ;
+; tsb/ip/rtl/ltc2308_debug/synthesis/ltc2308_debug.debuginfo                                      ;
+; tsb/ip/rtl/ltc2308_debug/synthesis/ltc2308_debug.qip                                            ;
+; tsb/ip/rtl/ltc2308_debug/synthesis/ltc2308_debug.v                                              ;
+; tsb/ip/rtl/ltc2308_debug/synthesis/submodules/altsource_probe_top.v                             ;
+; tsb/ip/rtl/math_func_package.v                                                                  ;
+; tsb/ip/rtl/midway8080_memory_adapter.sv                                                         ;
+; tsb/ip/rtl/narrator_ctrl.v                                                                      ;
+; tsb/ip/rtl/onchiprom16kword.v                                                                   ;
+; tsb/ip/rtl/pacoblaze/pacoblaze.v                                                                ;
+; tsb/ip/rtl/pacoblaze/pacoblaze3.v                                                               ;
+; tsb/ip/rtl/pacoblaze/pacoblaze_alu.v                                                            ;
+; tsb/ip/rtl/pacoblaze/pacoblaze_idu.v                                                            ;
+; tsb/ip/rtl/pacoblaze/pacoblaze_inc.v                                                            ;
+; tsb/ip/rtl/pacoblaze/pacoblaze_register.v                                                       ;
+; tsb/ip/rtl/pacoblaze/pacoblaze_scratch.v                                                        ;
+; tsb/ip/rtl/pacoblaze/pacoblaze_stack.v                                                          ;
+; tsb/ip/rtl/phoneme.mif                                                                          ;
+; tsb/ip/rtl/phonemes_rom.bsf                                                                     ;
+; tsb/ip/rtl/phonemes_rom.qip                                                                     ;
+; tsb/ip/rtl/phonemes_rom.v                                                                       ;
+; tsb/ip/rtl/phonemes_rom_bb.v                                                                    ;
+; tsb/ip/rtl/phonemes_rom_inst.v                                                                  ;
+; tsb/ip/rtl/read_address_range.v                                                                 ;
+; tsb/ip/rtl/reset_delay.v                                                                        ;
+; tsb/ip/rtl/sevensegmentdisplaydecoder.v                                                         ;
+; tsb/ip/rtl/speech.mem                                                                           ;
+; tsb/ip/rtl/speech_instruction_memory.v                                                          ;
+; tsb/ip/rtl/speech_subsystem.v                                                                   ;
+; tsb/ip/rtl/speech_synth_debug.qsys                                                              ;
+; tsb/ip/rtl/speech_synth_debug.sopcinfo                                                          ;
+; tsb/ip/rtl/speech_synth_debug/speech_synth_debug.cmp                                            ;
+; tsb/ip/rtl/speech_synth_debug/synthesis/speech_synth_debug.debuginfo                            ;
+; tsb/ip/rtl/speech_synth_debug/synthesis/speech_synth_debug.qip                                  ;
+; tsb/ip/rtl/speech_synth_debug/synthesis/speech_synth_debug.v                                    ;
+; tsb/ip/rtl/speech_synth_debug/synthesis/submodules/altsource_probe_top.v                        ;
+; tsb/ip/rtl/speech_synthesizer_wrapper.v                                                         ;
+; tsb/ip/rtl/strength_meter_fsm.v                                                                 ;
+; tsb/ip/rtl/tff_power_of_2_division_counter_with_auto_phase_inversion.v                          ;
+; tsb/ip/rtl/timing_constraints.sdc                                                               ;
+; tsb/ip/rtl/to_slow_clk_interface.v                                                              ;
+; tsb/ip/rtl/true_dual_port_ram_single_clock.sv                                                   ;
+; tsb/ip/rtl/var_clk_div32.v                                                                      ;
+; tsb/ip/rtl/vga_cursor_control.sv                                                                ;
+; tsb/ip/rtl/vga_system.qsys                                                                      ;
+; tsb/ip/rtl/vga_system.sopcinfo                                                                  ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/altera_reset_controller.sdc                          ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/altera_reset_controller.v                            ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/altera_reset_synchronizer.v                          ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/altera_up_avalon_video_vga_timing.v                  ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/vga_system_video_pixel_buffer_dma_0.v                ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/vga_system_video_rgb_resampler_1.v                   ;
+; tsb/ip/rtl/vga_system/synthesis/submodules/vga_system_video_vga_controller_0.v                  ;
+; tsb/ip/rtl/vga_system/synthesis/vga_system.debuginfo                                            ;
+; tsb/ip/rtl/vga_system/synthesis/vga_system.qip                                                  ;
+; tsb/ip/rtl/vga_system/synthesis/vga_system.v                                                    ;
+; tsb/ip/rtl/vga_system/vga_system.cmp                                                            ;
+; tsb/ip/rtl/vga_text_initial_file.mif                                                            ;
+; tsb/ip/rtl/vga_text_mixed_width_ram.bsf                                                         ;
+; tsb/ip/rtl/vga_text_mixed_width_ram.cmp                                                         ;
+; tsb/ip/rtl/vga_text_mixed_width_ram.inc                                                         ;
+; tsb/ip/rtl/vga_text_mixed_width_ram.qip                                                         ;
+; tsb/ip/rtl/vga_text_mixed_width_ram.v                                                           ;
+; tsb/ip/rtl/vga_text_mixed_width_ram_bb.v                                                        ;
+; tsb/ip/rtl/vga_text_mixed_width_ram_inst.v                                                      ;
+; tsb/ip/rtl/vga_text_mixed_width_ram_wrapper.sv                                                  ;
+; tsb/ip/rtl/widereg.v                                                                            ;
+; tsbs/common_rtl_library/tsb/ip/rtl/async_trap_and_reset_gen_1_pulse_robust.v                    ;
+; tsbs/common_rtl_library/tsb/ip/rtl/doublesync_no_reset.v                                        ;
+; tsbs/common_rtl_library/tsb/ip/rtl/generate_generic_bridge.tcl                                  ;
+; tsbs/common_rtl_library/tsb/ip/rtl/generate_generic_wb_bridge_instantiation.tcl                 ;
+; tsbs/common_rtl_library/tsb/ip/rtl/my_altera_std_synchronizer_nocut.v                           ;
+; tsbs/common_rtl_library/tsb/ip/rtl/programmable_wait_synchronous.v                              ;
+; tsbs/common_rtl_library/tsb/ip/rtl/read_ltc2308.v                                               ;
+; tsbs/common_rtl_library/tsb/ip/rtl/write_bit_seq_to_spi_configurable.v                          ;
++-------------------------------------------------------------------------------------------------+
+
+
++--------------------+
+; Files Not Restored ;
++--------------------+
+; File Name          ;
++--------------------+
+
+

@@ -1,0 +1,21 @@
+	component vga_system is
+		port (
+			clk_clk                                                        : in  std_logic                     := 'X';             -- clk
+			reset_reset_n                                                  : in  std_logic                     := 'X';             -- reset_n
+			vga_out_CLK                                                    : out std_logic;                                        -- CLK
+			vga_out_HS                                                     : out std_logic;                                        -- HS
+			vga_out_VS                                                     : out std_logic;                                        -- VS
+			vga_out_BLANK                                                  : out std_logic;                                        -- BLANK
+			vga_out_SYNC                                                   : out std_logic;                                        -- SYNC
+			vga_out_R                                                      : out std_logic_vector(7 downto 0);                     -- R
+			vga_out_G                                                      : out std_logic_vector(7 downto 0);                     -- G
+			vga_out_B                                                      : out std_logic_vector(7 downto 0);                     -- B
+			video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdatavalid : in  std_logic                     := 'X';             -- readdatavalid
+			video_pixel_buffer_dma_0_avalon_pixel_dma_master_waitrequest   : in  std_logic                     := 'X';             -- waitrequest
+			video_pixel_buffer_dma_0_avalon_pixel_dma_master_address       : out std_logic_vector(31 downto 0);                    -- address
+			video_pixel_buffer_dma_0_avalon_pixel_dma_master_lock          : out std_logic;                                        -- lock
+			video_pixel_buffer_dma_0_avalon_pixel_dma_master_read          : out std_logic;                                        -- read
+			video_pixel_buffer_dma_0_avalon_pixel_dma_master_readdata      : in  std_logic_vector(31 downto 0) := (others => 'X')  -- readdata
+		);
+	end component vga_system;
+
