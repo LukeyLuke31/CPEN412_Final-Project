@@ -1,0 +1,71 @@
+# Quartus-generated build directories and temporary files
+db/
+greybox_tmp/
+incremental_db/
+simulation/
+
+# Quartus-generated output files
+*.qdf
+# *.qsf     # this file contains 'Added Files' in the Quartus project. I was getting compilcation error because this file was empty when I pulled from git. 2025-02-25
+#           # comment this out again later if no problems arise
+*.qws
+#*.qpf
+*.pof
+*.sld
+*.pin
+*.jdi
+*.map
+*.rpt
+*.smsg
+*.summary
+*.sdc
+*.csv
+*.sdc
+*.ipregen.rpt
+*.done
+*.eda.rpt
+*.fit.*
+*.tan.*
+*.sta.*
+
+# Generated programming and config files
+*.ppf
+*.cmp
+*.spd
+*.sdc
+*.ddp
+*.ddb
+
+# Quartus synthesis files
+*.smsg
+*.qws
+*.tcl
+*.ttf
+
+# Logs, reports, and errors
+*.log
+*.txt
+*.json
+*.csv
+*.out
+*.err
+
+# Specific files from your untracked list
+output_file.map
+qmegawiz_errors_log.txt
+sopc_builder_log.txt
+serv_req_info.txt
+undo_redo.txt
+OnChipRom16KWord.bsf
+OnChipRom16KWord.qip
+OnChipRom16KWord.v
+OnChipRom16KWord_bb.v
+
+# Ignore compiled and auto-generated Verilog files
+*.syn.v
+*.cnx
+*.cnxerr
+
+# Ignore IDE-specific files (if applicable)
+.vscode/
+.idea/
