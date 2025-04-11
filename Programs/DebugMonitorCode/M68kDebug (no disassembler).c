@@ -193,15 +193,15 @@ void menu(void)
 
 
         if ( c == (char)('T'))  {
-               printf("\nRunning Cosmic Impalas Game\n");
-		       cosmic_impalas_main();
-			   continue;
+                printf("\nRunning Cosmic Impalas Game\n");
+                cosmic_impalas_main();
+                continue;
 		} 
 		
 		if ( c == (char)('G'))  {
-               printf("\nRunning Graphics Test\n");
-		       graphics_test_main();
-			   continue;
+                printf("\nRunning Graphics Test\n");
+                graphics_test_main();
+                continue;
 		} 
 		
         UnknownCommand() ;
@@ -215,13 +215,13 @@ void PrintErrorMessageandAbort(char *string) {
 }
 
 void IRQMessage(int level) {
-     printf("\r\n\r\nProgram ABORT !!!!!");
-     printf("\r\nUnhandled Interrupt: IRQ%d !!!!!", level) ;
-     menu() ;
+    printf("\r\n\r\nProgram ABORT !!!!!");
+    printf("\r\nUnhandled Interrupt: IRQ%d !!!!!", level) ;
+    menu() ;
 }
 
 void UnhandledIRQ1(void) {
-     IRQMessage(1);
+    IRQMessage(1);
 }
 
 void UnhandledIRQ2(void) {
@@ -233,7 +233,7 @@ void UnhandledIRQ3(void){
 }
 
 void UnhandledIRQ4(void) {
-     IRQMessage(4);
+    IRQMessage(4);
 }
 
 void UnhandledIRQ5(void) {
@@ -254,11 +254,11 @@ void UnhandledTrap(void) {
 }
 
 void BusError() {
-   PrintErrorMessageandAbort("BUS Error!") ;
+    PrintErrorMessageandAbort("BUS Error!") ;
 }
 
 void AddressError() {
-   PrintErrorMessageandAbort("ADDRESS Error!") ;
+    PrintErrorMessageandAbort("ADDRESS Error!") ;
 }
 
 void IllegalInstruction() {
@@ -270,11 +270,11 @@ void Dividebyzero() {
 }
 
 void Check() {
-   PrintErrorMessageandAbort("'CHK' INSTRUCTION") ;
+    PrintErrorMessageandAbort("'CHK' INSTRUCTION") ;
 }
 
 void Trapv() {
-   PrintErrorMessageandAbort("TRAPV INSTRUCTION") ;
+    PrintErrorMessageandAbort("TRAPV INSTRUCTION") ;
 }
 
 void PrivError() {
@@ -298,7 +298,7 @@ void Timer_ISR(void)
 		clock_count_ms = clock_count_ms + 10; //100 HZ clock = 10ms per clock tick
 		//printf("in timer isr, clock_count_ms = %d\n",clock_count_ms);
    	    Timer1Control = 3;      	// if so clear interrupt and restart timer
-   	}
+    }
 }
 
 /**********************************************************************************

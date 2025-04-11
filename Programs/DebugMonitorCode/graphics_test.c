@@ -1,11 +1,13 @@
 
 #include <string.h>
-#define PIXEL_BUFFER_VGA_BASEADDRESS   (0x01000000)
+
+#define PIXEL_BUFFER_VGA_BASEADDRESS   (0x01000000)		// pixel buffer memory address
 #define VIDMEM_DIM1_W_BLANK_EDGES (256)
 #define VIDMEM_DIM1 (224)
 #define VIDMEM_DIM2 (32)
 
-#define VIDEOMEM_ADDR(x,y) ((volatile unsigned char *)(PIXEL_BUFFER_VGA_BASEADDRESS + ((y)*VIDMEM_DIM1_W_BLANK_EDGES)+(x)))
+// Any pixel writes go here:
+#define VIDEOMEM_ADDR(x,y) ((volatile unsigned char *)(PIXEL_BUFFER_VGA_BASEADDRESS + ((y)*VIDMEM_DIM1_W_BLANK_EDGES)+(x)))		// each byte holds 8 vertical pixels
 #define VIDMEM(x,y) (*VIDEOMEM_ADDR(x,y))
 
 #define WRITE_VIDMEM(x,y,CH) ((*(volatile unsigned char *)(PIXEL_BUFFER_VGA_BASEADDRESS + ((y)*VIDMEM_DIM1_W_BLANK_EDGES)+(x))) = CH)

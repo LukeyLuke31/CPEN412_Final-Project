@@ -183,10 +183,11 @@ void FlushKeyboard(void) ;
 void TestLEDS(void) ;
 
 // prototypes for disassembler
-
 void DisassembleInstruction(unsigned short int *OpCode);
 void Decode6BitEA(unsigned short int *OpCode, int EAChoice, unsigned short int DataSize, unsigned short int IsItMoveInstruction);
 void Decode3BitOperandMode(unsigned short int *OpCode) ;  // used with instructions like ADD
 void Decode3BitAddressRegister(unsigned short int Reg);
 void Decode3BitDataRegister(unsigned short int OpCode) ;
 unsigned short int Decode2BitOperandSize(unsigned short int OpCode);
+
+// Prototypes for the final project

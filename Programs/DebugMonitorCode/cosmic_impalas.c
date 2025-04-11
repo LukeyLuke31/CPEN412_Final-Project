@@ -6,8 +6,8 @@
 
 #define PIXEL_BUFFER_VGA_BASEADDRESS   (0x01000000)
 #define VIDMEM_DIM1_W_BLANK_EDGES (256)
-#define VIDMEM_DIM1 (224)
-#define VIDMEM_DIM2 (32)
+#define VIDMEM_DIM1 (224)   // vertical pixels (1 bit per pixel)
+#define VIDMEM_DIM2 (32)    // 32-byte horizontal pixels (8 pixels per byte)
 
 #define VIDEOMEM_ADDR(x,y) ((volatile unsigned char *)(PIXEL_BUFFER_VGA_BASEADDRESS + ((y)*VIDMEM_DIM1_W_BLANK_EDGES)+(x)))
 #define VIDMEM(x,y) (*VIDEOMEM_ADDR(x,y))
@@ -64,14 +64,14 @@ byte lives;
 Enemy enemies[MAX_ENEMIES];
 char font8x8[HICHAR-LOCHAR+1][8];
 
-byte player_bitmap[56];
-byte bomb_bitmap[7];
-byte bullet_bitmap[6];
-byte enemy1_bitmap[34];
+byte player_bitmap[56];   // player sprite
+byte bomb_bitmap[7];      // bomb sprite
+byte bullet_bitmap[6];    // bullet sprite
+byte enemy1_bitmap[34];   
 byte enemy2_bitmap[34];
 byte enemy3_bitmap[34];
 byte enemy4_bitmap[34];
-byte* enemy_bitmaps[4];
+byte* enemy_bitmaps[4];   // sprite pointer array for enemies (1 column of 4 sprites)
  
 unsigned long seed; 
  
@@ -83,9 +83,27 @@ extern int clock_count_ms;
 // Functions to Implement
 //
 ///////////////////////////////////////////////////////////////////////////
-void draw_sprite(byte* src, byte x, byte y)
+// #define VIDMEM_DIM1_W_BLANK_EDGES (256)
+// #define VIDMEM_DIM1 (224)   // vertical pixels (1 bit per pixel)
+// #define VIDMEM_DIM2 (32)    // (256) 32-byte horizontal pixels (8 pixels per byte)
+// SCREEN IS ROTATED. WIDTH --> HEIGHT (256) & HEIGHT --> WIDTH (224)
+void draw_sprite(byte* src, byte x, byte y)   
 {
- //complete this function
+  //complete this function 
+  byte i, j, y_byte, bit_offset, data;
+  byte* dest = &VIDMEM(x, y); // destination address in video memory
+
+  byte w = *src++;  // width in bytes (horizontal size)
+  byte h = *src++;  // height in pixels (vertical size)
+
+  for (j = 0; j < h; j++){
+    for (i = 0; i < w; i++){
+      *dest++ = *src++; // copy the sprite data to video memory
+
+    }
+
+    dest += VIDMEM_DIM2 - w; // move to the next row in video memory
+  }
 }
 
 byte xor_sprite(byte *src, byte x, byte y)
@@ -128,7 +146,7 @@ unsigned long long_rand(void) {
 }
 
 int clock() {
-   return clock_count_ms;
+   return clock_count_ms;   // return in mili-seconds!
 }
 
 void delay_ms(int num_ms) {
@@ -145,6 +163,7 @@ void delay_ms(int num_ms) {
 	} while ((current_time - start_time) < num_ms);
 }
 
+// Clears the entire screen (by writing 0 to the video memory)
 void clrscr() {
   int a;
   int b;
@@ -193,7 +212,7 @@ void draw_vline(unsigned char x, unsigned char y1, unsigned char y2) {
 }
 
 
-
+// Draws a character at the specified x and y coordinates (vidmem[x][y])
 void draw_char(unsigned char ch, unsigned char x, unsigned char y) {
   unsigned char i;
   unsigned char* src;
@@ -208,6 +227,7 @@ void draw_char(unsigned char ch, unsigned char x, unsigned char y) {
   }
 }
 
+// Draws a string at the specified x and y coordinates (vidmem[x][y])
 void draw_string(char* str, byte x, byte y) {
   do {
     byte ch = *str++;
@@ -217,15 +237,22 @@ void draw_string(char* str, byte x, byte y) {
   } while (1);
 }
 
+// BCD: Binary-Coded Decimal
+// 1    9    5    7   ← Decimal #
+// 0001 1001 0101 0111  ← BCD format
+// Prints a score in BCD format (4 decimals) at the specified x and y coordinates
 void draw_bcd_word(word bcd, byte x, byte y) {
   byte j;
-  x += 3;
-  for (j=0; j<4; j++) {
-    draw_char('0'+(bcd&0xf), x, y);
-    x--;
-    bcd >>= 4;
+  x += 3;   // start printing from the right (4th digit)
+  for (j=0; j<4; j++) {     // draw 4 digits
+    draw_char('0'+(bcd&0xf), x, y);   // 
+    x--;    // move to the left for the next digit
+    bcd >>= 4;    // shift right to get the next BCD digit
   }
 }
+
+// ^ use this to print 'score', 'remaining lives', etc.
+// to print number in character format
 
 // Function to add two BCD numbers
 word bcd_add(word a, word b)
@@ -264,7 +291,7 @@ word bcd_add(word a, word b)
     return result;
 }
 
-
+// Draws remaining lives on the screen as '*'
 void draw_lives(byte player) 
 {
     byte i, n, x, y;
@@ -278,6 +305,7 @@ void draw_lives(byte player)
     }
 }
 
+// Draws player's score on the screen in BCD format
 void draw_score(byte player) {
     byte x, y;
 
@@ -286,6 +314,7 @@ void draw_score(byte player) {
 
     draw_bcd_word(score, x, y);
 }
+
 
 void add_score(word pts) {
   if (attract) return;
@@ -326,6 +355,7 @@ void destroy_player() {
   lives--;
 }
 
+// initializes 28 enemies in a 7x4 grid
 void init_enemies() {
     byte i, x, y, bm;
 
@@ -352,46 +382,58 @@ void init_enemies() {
     next_mode.down = 0;
 }
 
+// Clears enemy sprite from the 'enemies' array and pulls the rest of the array up
 void delete_enemy(Enemy* e) {
   clear_sprite(enemy_bitmaps[e->shape], e->x, e->y);
   memmove(e, e+1, sizeof(Enemy)*(enemies-e+MAX_ENEMIES-1));
   num_enemies--; // update_next_enemy() will check enemy_index
 }
 
+// Updates an enemy (enemies[enemy_index]) every frame
 void update_next_enemy() {
+  // if enemy_index exceeds remaining enemies, reset it to 0. Update this_mode to next_mode (moving mode)
   if (enemy_index >= num_enemies) {
     enemy_index = 0;
 	this_mode.down = next_mode.down;
 	this_mode.right = next_mode.right;
   }
+  // clear current enemy sprite
   clear_sprite(enemy_bitmaps[enemies[enemy_index].shape], enemies[enemy_index].x, enemies[enemy_index].y);
+  // Move down
   if (this_mode.down) {
-    // if too close to ground, end game
-	enemies[enemy_index].y = enemies[enemy_index].y-1;
+    enemies[enemy_index].y = enemies[enemy_index].y-1;
+    // if too close to ground, END GAME
     if (enemies[enemy_index].y < 5) {
       destroy_player();
       lives = 0;
     }
-    next_mode.down = 0;
-  } else {
-    if (this_mode.right) {
-      enemies[enemy_index].x += 2;
-      if (enemies[enemy_index].x >= 200) {
-        next_mode.down = 1;
-        next_mode.right = 0;
+    next_mode.down = 0;     // move horizontally
+  } 
+  // this part make the enemy move horizontally (left or right)
+  else {
+    if (this_mode.right) {  // move right
+      enemies[enemy_index].x += 2;    // move right 2 pixels
+      // Enemy reached right edge of screen. Move down.
+      if (enemies[enemy_index].x >= 200) { 
+        next_mode.down = 1;     // move down
+        next_mode.right = 0;    // move left
       }
-    } else {
+    } else {    // move left
       enemies[enemy_index].x -= 2;
-      if (enemies[enemy_index].x == 0) {
-        next_mode.down = 1;
-        next_mode.right = 1;
+      // Enemy reached left edge of screen. Move down.
+      if (enemies[enemy_index].x == 0) {    
+        next_mode.down = 1;   // move down
+        next_mode.right = 1;  // move right
       }
     }
   }
+  // draw the enemy sprite at the new position
   draw_sprite(enemy_bitmaps[enemies[enemy_index].shape], enemies[enemy_index].x, enemies[enemy_index].y);
+  // increment enemy_index to point to the next enemy
   enemy_index++;
 }
 
+// Draws a bunker formed of vertical lines from (x,y1) to (x,y2)
 void draw_bunker(byte x, byte y, byte y2, byte h, byte w) {
   byte i;
   for (i=0; i<h; i++) {
@@ -403,6 +445,7 @@ void draw_bunker(byte x, byte y, byte y2, byte h, byte w) {
   }
 }
 
+// Draws the playfield with player 1, score, lives, and bunkers
 void draw_playfield() {
   byte i;
   clrscr();
@@ -416,6 +459,7 @@ void draw_playfield() {
   draw_bunker(140, 40, 15, 15, 20);
 }
 
+// check if a coordinate (x,y) is within enemy rectangle defined by (e->x, e->y) and (w,h)
 char in_rect(e, x, y, w, h)
 Enemy *e;
 byte x, y, w, h;
@@ -428,6 +472,7 @@ byte x, y, w, h;
     return (x >= e->x - w && x <= e->x + ew && y >= e->y - h && y <= e->y + eh);
 }
 
+// Finds and returns which enemy is in the coordinate (x,y)
 Enemy *find_enemy_at(x, y)
 byte x, y;
 {
@@ -437,57 +482,66 @@ byte x, y;
     for (i = 0; i < num_enemies; i++) {
         e = &enemies[i];
         if (in_rect(e, x, y, 2, 0)) {
-            return e;
+            return e;     // enemy hit. return enemy pointer.
         }
     }
 
-    return NULL;
+    return NULL;      // no enemy found at (x,y)
 }
 
+// check if enemy is hit by bullet.
 void check_bullet_hit(x, y)
 byte x, y;
 {
     Enemy *e;
 
     e = find_enemy_at(x, y);
+
+    // if enemy hit, delete enemy and add score
     if (e) {
         delete_enemy(e);
         add_score(0x25);
     }
 }
 
+// fire a bullet from the player ship
 void fire_bullet()
 {
-    bullet_x = player_x + 13;
-    bullet_y = 3;
+    bullet_x = player_x + 13;   // fire bullet at the center of the ship
+    bullet_y = 3;               // bullet starts at y=3. Slightly above the player ship
+    // print bullet sprite 
     xor_sprite(bullet_bitmap, bullet_x, bullet_y); /* Draw bullet */
 }
 
+// move the bullet up the screen, 1 pixel at a time
 void move_bullet()
 {
     byte leftover;
 
-    leftover = xor_sprite(bullet_bitmap, bullet_x, bullet_y); /* Erase bullet */
-    if (leftover || bullet_y > 26) {
+    leftover = xor_sprite(bullet_bitmap, bullet_x, bullet_y); // /* Erase bullet */ using XOR 
+
+    if (leftover || bullet_y > 26) {  // if yes, there was another pixel above it or bullet is out of screen
         clear_sprite(bullet_bitmap, bullet_x, bullet_y);
-        check_bullet_hit(bullet_x, bullet_y + 2);
-        bullet_y = 0;
-    } else {
+        check_bullet_hit(bullet_x, bullet_y + 2);   // check if bullet hit an enemy 
+        bullet_y = 0;   // erase bullet
+    } else {      // no hit, keep moving
         bullet_y++;
         xor_sprite(bullet_bitmap, bullet_x, bullet_y); /* Draw bullet */
     }
 }
 
+// drops a bomb from the enemy ship
 void drop_bomb()
 {
     Enemy *e;
 
     e = &enemies[enemy_index];
-    bomb_x = e->x + 7;
-    bomb_y = e->y - 2;
+    bomb_x = e->x + 7;        // enemy center x coordinate
+    bomb_y = e->y - 2;        // slightly below enemy ship
     xor_sprite(bomb_bitmap, bomb_x, bomb_y); /* Draw bomb */
 }
 
+// moves the bomb down the screen, 1 pixel at a time
 void move_bomb()
 {
     byte leftover;
@@ -508,23 +562,29 @@ void move_bomb()
     }
 }
 
-
+// to keep track of the frame number
 byte frame;
 
-
+// 
 void play_round() {
   draw_playfield();
-  player_x = 96;
+  player_x = 96;    // player ship starts at x=96 (center of screen)
   bullet_y = 0;
   bomb_y = 0;
   frame = 0;
+
+  // while player is alive and there are enemies on the screen, keep playing
   while (player_x != 0xff && num_enemies) {
-	delay_ms(COSMIC_IMPALAS_TIMER_DELAY_MS);
-    move_player();
+	delay_ms(COSMIC_IMPALAS_TIMER_DELAY_MS);      // 50ms delay
+    move_player();    // move player ship left/right based on keypress
+    // if there is a bullet on the screen, move it up
     if (bullet_y) {
       move_bullet();
     }
-    update_next_enemy();
+
+    update_next_enemy();  // update an enemy position
+
+    // drop bomb every 2 frames (when 'frame' is odd)
     if (frame & 1) {
       if (bomb_y == 0) {
         drop_bomb();
@@ -532,10 +592,11 @@ void play_round() {
         move_bomb();
       }
     }
-    frame++;
+    frame++;    // next frame
   }
 }
 
+// 
 void init_game() {
   score = 0;
   lives = MAXLIVES;
