@@ -83,26 +83,24 @@ extern int clock_count_ms;
 // Functions to Implement
 //
 ///////////////////////////////////////////////////////////////////////////
-// #define VIDMEM_DIM1_W_BLANK_EDGES (256)
+// #define VIDMEM(x,y) (*VIDEOMEM_ADDR(x,y))
 // #define VIDMEM_DIM1 (224)   // vertical pixels (1 bit per pixel)
 // #define VIDMEM_DIM2 (32)    // (256) 32-byte horizontal pixels (8 pixels per byte)
 // SCREEN IS ROTATED. WIDTH --> HEIGHT (256) & HEIGHT --> WIDTH (224)
 void draw_sprite(byte* src, byte x, byte y)   
 {
   //complete this function 
-  byte i, j, y_byte, bit_offset, data;
-  byte* dest = &VIDMEM(x, y); // destination address in video memory
+  byte i, j, w, h;
+  // volatile byte* dest;
 
-  byte w = *src++;  // width in bytes (horizontal size)
-  byte h = *src++;  // height in pixels (vertical size)
+  w = *src++;  // width in bytes (horizontal size)
+  h = *src++;  // height in pixels (vertical size)
 
-  for (j = 0; j < h; j++){
-    for (i = 0; i < w; i++){
-      *dest++ = *src++; // copy the sprite data to video memory
-
+  for (i = 0; i < h; i++){
+    for (j = 0; j < w; j++){
+      *VIDEOMEM_ADDR(x + i, y + j) |= *src++;
+      // *VIDEOMEM_ADDR(x + i, y + j) &= ~(*src++);
     }
-
-    dest += VIDMEM_DIM2 - w; // move to the next row in video memory
   }
 }
 
@@ -119,6 +117,16 @@ void erase_sprite(byte *src, byte x, byte y)
 void clear_sprite(byte *src, byte x, byte y)
 {
  //complete this function
+  byte i, j, w, h;
+
+  w = *src++;
+  h = *src++;
+
+  for (i = 0; i < h; i++) {
+    for (j = 0; j < w; j++) {
+      *VIDEOMEM_ADDR(x + i, y + j) = 0;  // clear only the pixels set by the sprite
+    }
+  }
 }
 
 void move_player() {
